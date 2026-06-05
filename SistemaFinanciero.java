@@ -9,44 +9,19 @@ public class SistemaFinanciero {
 
         System.out.println("=== INGRESO DE DATOS FINANCIEROS DE SU EMPRESA ===");
 
-        System.out.print("Activo Corriente: ");
-        double activoCorriente = sc.nextDouble();
-
-        System.out.print("Inventario: ");
-        double inventario = sc.nextDouble();
-
-        System.out.print("Efectivo: ");
-        double efectivo = sc.nextDouble();
-
-        System.out.print("Pasivo Corriente: ");
-        double pasivoCorriente = sc.nextDouble();
-
-        System.out.print("Activo Total: ");
-        double activoTotal = sc.nextDouble();
-
-        System.out.print("Pasivo Total: ");
-        double pasivoTotal = sc.nextDouble();
-
-        System.out.print("Patrimonio: ");
-        double patrimonio = sc.nextDouble();
-
-        System.out.print("Ingresos (Ventas): ");
-        double ingresos = sc.nextDouble();
-
-        System.out.print("Costos: ");
-        double costos = sc.nextDouble();
-
-        System.out.print("Gastos: ");
-        double gastos = sc.nextDouble();
-
-        System.out.print("Intereses: ");
-        double intereses = sc.nextDouble();
-
-        System.out.print("Cuentas por cobrar: ");
-        double cxc = sc.nextDouble();
-
-        System.out.print("Cuentas por pagar: ");
-        double cxp = sc.nextDouble();
+        double activoCorriente = leerNumero(sc, "Activo Corriente: ");
+        double inventario = leerNumero(sc, "Inventario: ");
+        double efectivo = leerNumero(sc, "Efectivo: ");
+        double pasivoCorriente = leerNumero(sc, "Pasivo Corriente: ");
+        double activoTotal = leerNumero(sc, "Activo Total: ");
+        double pasivoTotal = leerNumero(sc, "Pasivo Total: ");
+        double patrimonio = leerNumero(sc, "Patrimonio: ");
+        double ingresos = leerNumero(sc, "Ingresos (Ventas): ");
+        double costos = leerNumero(sc, "Costos: ");
+        double gastos = leerNumero(sc, "Gastos: ");
+        double intereses = leerNumero(sc, "Intereses: ");
+        double cxc = leerNumero(sc, "Cuentas por cobrar: ");
+        double cxp = leerNumero(sc, "Cuentas por pagar: ");
 
         /* -en esta parte se declararon las variables para realizar los calculos 
         de los indicadores */
@@ -94,6 +69,41 @@ public class SistemaFinanciero {
         double periodoPago = 365 / (costos / cxp);
         double cicloOperativo = periodoInventario + periodoCobro;
         double cicloCaja = cicloOperativo - periodoPago;
+
+        //
+    }
+
+    //validacion para la division
+    public static double dividir(double numerador, double denominador, String mensaje) {
+        if (denominador == 0) {
+            System.out.println("⚠️ No se puede calcular " + mensaje + " (división por cero)");
+            return Double.NaN;
+        }
+        return numerador / denominador;
+    }
+
+    //validacion de valores
+    public static double leerNumero(Scanner sc, String mensaje) {
+        double valor;
+        do {
+            System.out.print(mensaje);
+            valor = sc.nextDouble();
+
+            if (valor < 0) {
+                System.out.println("⚠️ No se permiten valores negativos");
+            }
+
+        } while (valor < 0);
+        return valor;
+    }
+
+    // mostrar datos
+    public static void mostrar(String nombre, double valor) {
+        if (Double.isNaN(valor)) {
+            System.out.println(nombre + ": No calculable");
+        } else {
+            System.out.println(nombre + ": " + valor);
+        }
     }
     
 }
