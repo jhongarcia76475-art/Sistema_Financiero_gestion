@@ -30,53 +30,49 @@ public class SistemaFinanciero {
 
         //INDICADORES DE LIQUIDEZ
         double capitalTrabajo = activoCorriente - pasivoCorriente;
-        double razonLiquidez = activoCorriente / pasivoCorriente;
-        double pruebaAcida = (activoCorriente - inventario) / pasivoCorriente;
-        double ratioCaja = efectivo / pasivoCorriente;
+        double razonLiquidez = dividir(activoCorriente, pasivoCorriente, "Razón de liquidez");
+        double pruebaAcida = dividir((activoCorriente - inventario), pasivoCorriente, "Prueba ácida");
+        double ratioCaja = dividir(efectivo, pasivoCorriente, "Ratio de caja");
 
         // INDICADORES DE ENDEUDAMIENTO
-        double endeudamientoTotal = pasivoTotal / activoTotal;
-        double concentracionCP = pasivoCorriente / pasivoTotal;
-        double endeudamientoFinanciero = pasivoTotal / patrimonio;
-        double apalancamiento = activoTotal / patrimonio;
-        double endeudamientoCP = pasivoCorriente / activoTotal;
-        double coberturaInteres = utilidad / intereses;
-        double ratioDeuda = pasivoTotal / activoTotal;
-        double deudaPatrimonio = pasivoTotal / patrimonio;
+        double endeudamientoTotal = dividir(pasivoTotal, activoTotal, "Endeudamiento total");
+        double concentracionCP = dividir(pasivoCorriente, pasivoTotal, "Concentración corto plazo");
+        double endeudamientoFinanciero = dividir(pasivoTotal, patrimonio, "Endeudamiento financiero");
+        double apalancamiento = dividir(activoTotal, patrimonio, "Apalancamiento");
+        double endeudamientoCP = dividir(pasivoCorriente, activoTotal, "Endeudamiento corto plazo");
+        double coberturaInteres = dividir(utilidad, intereses, "Cobertura de interés");
+        double ratioDeuda = dividir(pasivoTotal, activoTotal, "Ratio total deuda");
+        double deudaPatrimonio = dividir(pasivoTotal, patrimonio, "Deuda patrimonio");
 
         // INDICADORES DE RENTABILIDAD
-        double margenNeto = utilidad / ingresos;
-        double roa = utilidad / activoTotal;
-        double roe = utilidad / patrimonio;
-        double facturacionActivos = ingresos / activoTotal;
-        double rendimientoActivos = roa;
-        double rendimientoPatrimonio = roe;
+        double margenNeto = dividir(utilidad, ingresos, "Margen neto");
+        double roa = dividir(utilidad, activoTotal, "ROA");
+        double roe = dividir(utilidad, patrimonio, "ROE");
+        double facturacionActivos = dividir(ingresos, activoTotal, "Facturación activos");
 
         // INDICADORES DE INVENTARIO
-        double rotacionInventario = costos / inventario;
-        double diasInventario = 365 / rotacionInventario;
+        double rotacionInventario = dividir(costos, inventario, "Rotación inventario");
+        double diasInventario = dividir(365, rotacionInventario, "Días inventario");
 
         // INDICADORES DE CREDITO
-        double volumenVentas = ingresos;
-        double diasVentasCredito = 365 / (ingresos / cxc);
+        double rotacionCartera = dividir(ingresos, cxc, "Rotación cartera");
+        double diasVentasCredito = dividir(365, rotacionCartera, "Días ventas crédito");
 
         // LA IDENTIDAD DUPONT
         double dupont = margenNeto * facturacionActivos * apalancamiento;
 
         // MEDIDAS DEL VALOR DEL MERCADO
         double periodoInventario = diasInventario;
-        double periodoCobro = 365 / (ingresos / cxc);
-        double periodoPago = 365 / (costos / cxp);
+        double periodoCobro = diasVentasCredito;
+        double periodoPago = dividir(365, dividir(costos, cxp, "Rotación pagos"), "Periodo pago");
         double cicloOperativo = periodoInventario + periodoCobro;
-        double cicloCaja = cicloOperativo - periodoPago;
-
-        //
+        double cicloCaja = cicloOperativo - periodoPago;;
     }
 
     //validacion para la division
     public static double dividir(double numerador, double denominador, String mensaje) {
         if (denominador == 0) {
-            System.out.println("⚠️ No se puede calcular " + mensaje + " (división por cero)");
+            System.out.println(" No se puede calcular " + mensaje + " (división por cero)");
             return Double.NaN;
         }
         return numerador / denominador;
@@ -90,7 +86,7 @@ public class SistemaFinanciero {
             valor = sc.nextDouble();
 
             if (valor < 0) {
-                System.out.println("⚠️ No se permiten valores negativos");
+                System.out.println(" No se permiten valores negativos");
             }
 
         } while (valor < 0);
