@@ -66,7 +66,47 @@ public class SistemaFinanciero {
         double periodoCobro = diasVentasCredito;
         double periodoPago = dividir(365, dividir(costos, cxp, "Rotación pagos"), "Periodo pago");
         double cicloOperativo = periodoInventario + periodoCobro;
-        double cicloCaja = cicloOperativo - periodoPago;;
+        double cicloCaja = cicloOperativo - periodoPago;
+
+        // ================= RESULTADOS =================
+        System.out.println("\n===Indicadores===");
+
+        System.out.println("\n--- LIQUIDEZ ---");
+        mostrar("Capital de trabajo", capitalTrabajo);
+        mostrar("Razón de liquidez", razonLiquidez);
+        mostrar("Prueba ácida", pruebaAcida);
+        mostrar("Ratio de caja", ratioCaja);
+
+        System.out.println("\n--- ENDEUDAMIENTO ---");
+        mostrar("Endeudamiento total", endeudamientoTotal);
+        mostrar("Concentración corto plazo", concentracionCP);
+        mostrar("Endeudamiento financiero", endeudamientoFinanciero);
+        mostrar("Apalancamiento", apalancamiento);
+        mostrar("Endeudamiento corto plazo", endeudamientoCP);
+        mostrar("Cobertura de interés", coberturaInteres);
+        mostrar("Ratio total deuda", ratioDeuda);
+        mostrar("Deuda patrimonio", deudaPatrimonio);
+
+        System.out.println("\n--- RENTABILIDAD ---");
+        mostrar("Margen neto", margenNeto);
+        mostrar("ROA", roa);
+        mostrar("ROE", roe);
+        mostrar("Facturación activos", facturacionActivos);
+
+        System.out.println("\n--- ACTIVIDAD ---");
+        mostrar("Rotación inventario", rotacionInventario);
+        mostrar("Días inventario", diasInventario);
+        mostrar("Días ventas crédito", diasVentasCredito);
+
+        System.out.println("\n--- DUPONT ---");
+        mostrar("Identidad Dupont", dupont);
+
+        System.out.println("\n--- CICLOS ---");
+        mostrar("Periodo inventario", periodoInventario);
+        mostrar("Periodo cobro", periodoCobro);
+        mostrar("Periodo pago", periodoPago);
+        mostrar("Ciclo operativo", cicloOperativo);
+        mostrar("Ciclo de caja", cicloCaja);
     }
 
     //validacion para la division
