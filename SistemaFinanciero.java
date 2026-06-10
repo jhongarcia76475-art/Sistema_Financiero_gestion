@@ -339,28 +339,28 @@ public class SistemaFinanciero {
             double utilidad = ingresos - costos - gastos;
                 
             do { 
-            System.out.println("====================================================");
-            System.out.println("| == YA INGRESADOS LOS DATOS QUE DESEAS ENCONTRAR ==|");
-            System.out.println("====================================================");
-            System.out.println("====================================================");
-            System.out.println("| 1 == INDICADORES DE LIQUIDEZ                      |");
-            System.out.println("====================================================");
-            System.out.println("| 2 == INDICADORES DE ENDEUDAMIENTO                 |");
-            System.out.println("====================================================");
-            System.out.println("| 3 == INDICADORES DE RENTABILIDAD                  |");
-            System.out.println("====================================================");
-            System.out.println("| 4 == INDICADORES DE INVENTARIO                    |");
-            System.out.println("====================================================");
-            System.out.println("| 5 == INDICADORES DE CREDITO                       |");
-            System.out.println("====================================================");
-            System.out.println("| 6 == LA IDENTIDAD DUPONT                          |");
-            System.out.println("====================================================");
-            System.out.println("| 7 == MEDIDAS DEL VALOR DEL MERCADO                |");
-            System.out.println("====================================================");
-            System.out.println("| 8 == VARIACION RELATIVA Y ABSOLUTA                |");
-            System.out.println("====================================================");
-            System.out.println("| 0 == SALIR                                        |");
-            System.out.println("====================================================");
+            System.out.println("======================================================");
+            System.out.println("| == YA INGRESADOS LOS DATOS, QUE DESEAS ENCONTRAR ==|");
+            System.out.println("======================================================");
+            System.out.println("======================================================");
+            System.out.println("| 1 == INDICADORES DE LIQUIDEZ                       |");
+            System.out.println("======================================================");
+            System.out.println("| 2 == INDICADORES DE ENDEUDAMIENTO                  |");
+            System.out.println("======================================================");
+            System.out.println("| 3 == INDICADORES DE RENTABILIDAD                   |");
+            System.out.println("======================================================");
+            System.out.println("| 4 == INDICADORES DE INVENTARIO                     |");
+            System.out.println("======================================================");
+            System.out.println("| 5 == INDICADORES DE CREDITO                        |");
+            System.out.println("======================================================");
+            System.out.println("| 6 == LA IDENTIDAD DUPONT                           |");
+            System.out.println("======================================================");
+            System.out.println("| 7 == MEDIDAS DEL VALOR DEL MERCADO                 |");
+            System.out.println("======================================================");
+            System.out.println("| 8 == VARIACION RELATIVA Y ABSOLUTA                 |");
+            System.out.println("======================================================");
+            System.out.println("| 0 == SALIR                                         |");
+            System.out.println("======================================================");
 
             caso = sc.nextInt();
                 
@@ -651,7 +651,9 @@ public class SistemaFinanciero {
 
     // ===== REGISTRO =====
     public static void registrarUsuario(Scanner sc) {
-        System.out.print("Nuevo usuario: ");
+        System.out.println("===============");
+        System.out.println("NUEVO USUARIO: ");
+        System.out.println("===============");
         String u = sc.nextLine();
 
         if (usuarioExiste(u)) {
@@ -659,7 +661,9 @@ public class SistemaFinanciero {
             return;
         }
 
-        System.out.print("Clave: ");
+        System.out.println("=========");
+        System.out.println("CLAVE: ");
+        System.out.println("=========");
         String c = sc.nextLine();
 
         try {
@@ -699,7 +703,7 @@ public class SistemaFinanciero {
             String[] d = linea.split(",");
 
             if (d[0].equals(usuario)) {
-                // 🔥 REEMPLAZA LOS DATOS
+                //  REEMPLAZA LOS DATOS
                 fw.write(usuario + "," + empresa);
                 for (double val : nuevosDatos) {
                     fw.write("," + val);
